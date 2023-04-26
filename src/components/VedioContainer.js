@@ -19,14 +19,12 @@ const VedioContainer = () => {
         setVideos(json?.items)
     }
 
-    console.log(videos)
-
 
   return !videos || videos?.length===0 ? (
-        <div className='mx-16 my-4 flex flex-wrap'>
+        <div className='mx-0 my-0 sm:mx-16 sm:my-4 flex flex-wrap'>
             {Array(15).fill("*").map((data, index)=><VedioContainerShimmer key={index}/>)}
         </div>) : (
-        <div className='mx-16 my-4 flex flex-wrap'>  
+        <div className='mx-0 my-6 sm:mx-16 sm:my-4 flex flex-wrap'>  
             {videos?.map(item=><Link to={'watch?v='+item.id} key={item?.id}><VideoCard item={item}/></Link>)}    
         </div>
   )

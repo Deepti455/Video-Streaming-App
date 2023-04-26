@@ -10,8 +10,7 @@
     overflow-y: auto;
   }
   .scrollbar::-webkit-scrollbar {
-    width: 12px;
-    height: 20px;
+    width: 10px;
   }
 
   .scrollbar::-webkit-scrollbar-track {

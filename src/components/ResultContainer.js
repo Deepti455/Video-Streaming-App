@@ -43,11 +43,11 @@ const ResultContainer = () => {
 
 
   return !queryResults || queryResults?.length===0 ? (
-    <div className='h-screen overflow-y-auto pb-32 pt-10 pl-20'>
+    <div className='h-screen overflow-y-auto pb-32 pt-10 px-2 sm:pl-20'>
         {Array(5).fill("*").map((data,index)=><ResultContainerShimmer key={index}/>)}
     </div>
   ) : (
-    <div className='h-screen overflow-y-auto pb-32 pt-10 pl-20'>
+    <div className='h-screen overflow-y-auto pb-32 pt-10  px-2 sm:pl-20'>
         {queryResults?.map((result)=><Results key={result.id.videoId} result={result}/>) }
         <button onClick={()=> getSearchResults(nextPage)} className='m-auto bg-green-700 text-white px-5 py-3 block text-xl font-semibold rounded-2xl'>Show More</button>
     </div>
@@ -58,8 +58,8 @@ const ResultContainer = () => {
 const Results=({result})=>{
     const {id, snippet} = result
     return (
-        <div className='flex mb-4'>
-            <Link to={'/watch?v='+id.videoId}><img src={snippet?.thumbnails?.medium?.url} alt={"vedio-img"} className='w-[28rem] h-64 rounded-2xl max-w-fit'/></Link>
+        <div className='flex mb-16 flex-col sm:flex-row sm:mb-4'>
+            <Link to={'/watch?v='+id.videoId}><img src={snippet?.thumbnails?.medium?.url} alt={"vedio-img"} className='w-full  sm:w-[28rem] h-64 rounded-2xl max-w-fit'/></Link>
             <div className='pl-6 pt-5'>
             <p className='text-2xl pb-5'>{snippet?.title}</p>
             <p className='text-sm pb-10'>{snippet.channelTitle} 💥</p>

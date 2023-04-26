@@ -6,7 +6,7 @@ import { buttons } from '../utils/constant'
 
 const ButtonList = () => {
   return (
-    <div className='my-6 mx-8'>
+    <div className='sm:my-6 sm:mx-8 w-full hidden sm:visible'>
         {buttons.map((button,index)=><Button key={index} name={button}/>)}
     </div>
   )

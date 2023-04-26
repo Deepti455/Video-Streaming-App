@@ -32,9 +32,9 @@ const LiveChat = () => {
         
     </div>
     <form className='w-full border border-black h-10 rounded-lg' onSubmit={(e)=>e.preventDefault()}>
-        <input type='text' className='w-4/5 h-9 rounded-lg px-4' placeholder='Say something... 😊' value={liveMessage} onChange={(e)=>{setLiveMessage(e.target.value)}}/>
+        <input type='text' className='w-full sm:w-4/5 h-9 rounded-lg px-4' placeholder='Say something... 😊' value={liveMessage} onChange={(e)=>{setLiveMessage(e.target.value)}}/>
         <button 
-            className='mx-3 bg-green-100 px-5 py-1 rounded-lg' 
+            className='mx-3 mt-2 sm:mt-auto bg-green-100 px-5 py-1 rounded-lg' 
             onClick={()=>{
                 dispatch(addMessage({
                 name: "Deepti Verma",

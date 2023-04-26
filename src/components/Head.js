@@ -16,6 +16,7 @@ const Head = () => {
     const [searchSuggestions, setSearchSuggestions] = useState([])
     const [showSuggestions, setShowSuggestions] = useState(false)
     const searchCache = useSelector(store=>store.search)
+    // const [searchClick, setSearchClick] = useState(false);
 
     useEffect(()=>{
         //make the api call on every keypress
@@ -64,7 +65,7 @@ const Head = () => {
 
 
   return (
-    <div className='grid grid-flow-col shadow-lg p-2 pl-10'>
+    <div className='grid grid-flow-col shadow-lg p-2 pl-2 sm:pl-10'>
         <div className='flex col-span-1 items-center'>
             <img 
             onClick={()=>handleSideBarToggle()}
@@ -93,7 +94,7 @@ const Head = () => {
                 className='bg-gray-100 py-2 px-4 border border-gray-600 rounded-r-3xl'>
                 &#128269;
             </button>
-            {showSuggestions && <div className='fixed top-16 z-10 bg-white w-[48rem]  mt-2 rounded-xl shadow-lg border-gray-400'>
+            {showSuggestions && <div className='fixed left-[-0.1px] sm:left-0 top-12 sm:top-16 z-10 bg-white w-full sm:w-[48rem]  mt-2 rounded-xl shadow-lg border-gray-400'>
                 <ul onBlur={()=>setShowSuggestions(false)}>
                     {searchSuggestions.map((suggestion, index)=>
                         <Link key={index} to={'/results?search-query='+suggestion.split(" ").join("+")}><li className='text-lg font-semibold py-2 hover:bg-gray-200 px-6 cursor-pointer' onClick={()=>{dispatch(addSearchQuery(suggestion)); setSearchQuery(suggestion); setShowSuggestions(false)}}>
