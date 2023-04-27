@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { sideBarList } from '../utils/constant'
 import {Link} from 'react-router-dom'
 import { closeMenu } from '../utils/appSlice'
+import { isMobile } from 'react-device-detect'
 
 
 
@@ -20,7 +21,7 @@ const Sidebar = () => {
             <div className='border-b py-4' key={`div${index}`}>
                 {heading && heading}
                 <ul className='text-lg'>
-                    {data.links.map((link, index)=><Link to='/' onClick={()=>dispatch(closeMenu())} key={index}><li className='py-2 w-80 sm:w-56 hover:bg-gray-200 text-lg px-5 rounded-lg cursor-pointer'>{link}</li></Link>)}
+                    {data.links.map((link, index)=><Link to='/' onClick={()=>isMobile && dispatch(closeMenu())} key={index}><li className='py-2 w-80 sm:w-56 hover:bg-gray-200 text-lg px-5 rounded-lg cursor-pointer'>{link}</li></Link>)}
                 </ul>
             </div>
            )
