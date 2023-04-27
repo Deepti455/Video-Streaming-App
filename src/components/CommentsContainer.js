@@ -121,7 +121,6 @@ const Comment = ({data}) => {
 
 
   const CommentList = ({comment})=>{
-    console.log(comment)
     return comment.map((data,index)=>(
         <div>
             <Comment key={index} data={data}/>

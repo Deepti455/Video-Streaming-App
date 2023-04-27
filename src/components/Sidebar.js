@@ -18,7 +18,7 @@ const Sidebar = () => {
             <div className='border-b py-4' key={`div${index}`}>
                 {heading && heading}
                 <ul className='text-lg'>
-                    {data.links.map((link, index)=><Link to='/'  key={index}><li className='py-2 w-80 sm:w-56 hover:bg-gray-200 text-lg px-5 rounded-lg cursor-pointer' onClick={()=>console.log("hlwwwww")}>{link}</li></Link>)}
+                    {data.links.map((link, index)=><Link to='/'  key={index}><li className='py-2 w-80 sm:w-56 hover:bg-gray-200 text-lg px-5 rounded-lg cursor-pointer'>{link}</li></Link>)}
                 </ul>
             </div>
            )

@@ -1,13 +1,15 @@
 import React,{useEffect, useState} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import { toggleOpen } from '../utils/appSlice'
-import {Link} from 'react-router-dom'
-import { YOUTUBE_SEARCH_API } from '../utils/constant'
+import {Link, useNavigate} from 'react-router-dom'
+import { YOUTUBE_SEARCH_API, proxyUrl } from '../utils/constant'
 import { cacheSearchResults } from '../utils/searchSlice'
 import { addSearchQuery } from '../utils/searchQuerySlice'
 import Logo from '../utils/images/logo.png'
+import LogoMobile from '../utils/images/logo_1.png'
 import HamburgerIcon from '../utils/images/hamburger.png'
 import Avatar from '../utils/images/avatar.png'
+import { isMobile } from 'react-device-detect'
 
 const Head = () => {
     const dispatch = useDispatch()
@@ -16,6 +18,7 @@ const Head = () => {
     const [searchSuggestions, setSearchSuggestions] = useState([])
     const [showSuggestions, setShowSuggestions] = useState(false)
     const searchCache = useSelector(store=>store.search)
+    const navigate = useNavigate();
     // const [searchClick, setSearchClick] = useState(false);
 
     useEffect(()=>{
@@ -45,7 +48,7 @@ const Head = () => {
     },[searchQuery])
 
     const getSearchSuggestions = async()=>{
-        const res = await fetch(YOUTUBE_SEARCH_API+searchQuery);
+        const res = await fetch(proxyUrl + YOUTUBE_SEARCH_API+searchQuery);
         const json = await res.json();
         setSearchSuggestions(json[1])
         dispatch(cacheSearchResults({
@@ -80,17 +83,17 @@ const Head = () => {
             alt='youtube' />
             </Link>
         </div>
-        <div className='col-span-10 items-center flex justify-center'>
+        <div className='col-span-10 items-center flex justify-center m-2 sm:m-0'>
             <input 
-                className='w-1/2 border border-gray-600 h-10 rounded-l-3xl p-4 text-lg font-semibold'
+                className='w-full sm:w-1/2 border border-gray-600 h-10 rounded-l-3xl p-4 text-lg font-semibold'
                 placeholder='Search'
                 type='text'
                 value={searchQuery}
                 onChange={(e)=> setSearchQuery(e.target.value)}
                 onFocus={()=>setShowSuggestions(true)}
-                // onBlur={()=>setShowSuggestions(false)}
                 />
             <button 
+               onClick={()=>{dispatch(addSearchQuery(searchQuery)); navigate("/results?search-query="+searchQuery.split(" ").join("+")) }}
                 className='bg-gray-100 py-2 px-4 border border-gray-600 rounded-r-3xl'>
                 &#128269;
             </button>
@@ -105,7 +108,7 @@ const Head = () => {
                 </ul>
             </div>}
         </div>
-        <div className='col-span-1 flex items-center'>
+        <div className='col-span-1 flex items-center w-9 sm:w-auto'>
             <img
             className='h-9'
             src={Avatar}

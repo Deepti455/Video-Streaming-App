@@ -13,3 +13,5 @@ export const YOUTUBE_SEARCH_RESULT = (query)=>"https://youtube.googleapis.com/yo
 export const YOUTUBE_SEARCH_RESULT1 = (nextPage, query)=>"https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&pageToken="+nextPage+"&q="+query+"&regionCode=IN&key="+process.env.REACT_APP_YOUTUBE_API_KEY
 
 export const OFFSET_LIVE_CHAT = 200;
+
+export const proxyUrl = "https://cors-anywhere.herokuapp.com/";

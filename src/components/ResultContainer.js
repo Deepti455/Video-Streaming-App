@@ -17,20 +17,16 @@ const ResultContainer = () => {
         const json = await res.json();
         setQueryResults([...queryResults,...json.items])
         const pageToken = json.nextPageToken
-        console.log(pageToken)
         setNextPage(pageToken)
         }else if(nextPage){
             const res = await fetch(YOUTUBE_SEARCH_RESULT1(nextPage,query))
             const json = await res.json();
             const pageToken = json.nextPageToken
-            console.log(pageToken)
             setNextPage(pageToken)
             setQueryResults([...queryResults,...json.items])
         }
         
     }
-
-    console.log(nextPage)
 
    useEffect(()=>{
     if(!query){

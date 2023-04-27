@@ -1,22 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from './Sidebar'
 import { Outlet } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import {isMobile} from 'react-device-detect';
+import { closeMenu } from '../utils/appSlice';
 
 
 const Body = () => {
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event) => {
-  //     if (ref.current && !ref.current.contains(event.target)) {
-  //       onClickOutside && onClickOutside();
-  //     }
-  //   };
-  //   document.addEventListener('click', handleClickOutside, true);
-  //   return () => {
-  //     document.removeEventListener('click', handleClickOutside, true);
-  //   };
-  // }, [ onClickOutside ]);
+  useEffect(()=>{
+    if(isMobile){
+      dispatch(closeMenu())
+    }
+},[isMobile])
 
   const isSideBarOpen = useSelector(store=> store.app.isSideBarOpen)
 
